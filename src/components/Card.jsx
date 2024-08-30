@@ -9,7 +9,7 @@ const Card = ({ name, img, price, symbol, handleInfoClick }) => {
         <p>
           ${price.toFixed(2)} {symbol}
         </p>
-        <Button onClick={handleInfoClick} />
+        <Button onClick={handleInfoClick}>Detalles</Button>
       </div>
     </div>
   );
