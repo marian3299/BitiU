@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import CardNews from "../components/CardNews";
 import { apiKey, urlNews } from "../utils/constans";
+import LoadingState from "../utils/LoadingState";
 
 const Blog = () => {
-  const [news, setNews] = useState([]);
+  const [news, setNews] = useState([]); //Estado de la data que reibimos de la API
+  const [loading, setLoading] = useState(false);
 
   const options = {
     method: "GET",
@@ -13,6 +15,7 @@ const Blog = () => {
     },
   };
 
+  //Funcion que verifica si la imagen de cada noticia es valida
   const isValidImage = (url) => {
     return new Promise((resolve) => {
       const img = new Image();
@@ -22,7 +25,9 @@ const Blog = () => {
     });
   };
 
+  //Llamado a la API
   useEffect(() => {
+    setLoading(true);
     fetch(urlNews, options)
       .then((response) => response.json())
       .then(async (data) => {
@@ -36,11 +41,14 @@ const Blog = () => {
           Boolean
         );
         setNews(validNews);
+        setLoading(false);
       })
       .catch((err) => console.error(err));
   }, []);
 
-  console.log(news);
+  if (loading) {
+    return <LoadingState />;
+  }
 
   return (
     <>

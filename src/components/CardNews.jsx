@@ -1,6 +1,7 @@
 import Button from "../utils/Button";
 
 const CardNews = ({ img, link, title }) => {
+  //Funcion para el manejo de boton. Al hacer click nos redirige a la noticia
   const handleClick = () => {
     window.open(link, "_blank");
   };

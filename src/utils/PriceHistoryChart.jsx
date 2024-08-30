@@ -25,6 +25,7 @@ Chart.register(
   Legend
 );
 
+//Componente encargado de hacer cada grafico
 const PriceHistoryChart = ({ priceHistory }) => {
   const data = {
     datasets: [
